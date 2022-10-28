@@ -1,0 +1,66 @@
+---
+title: Store
+---
+
+import StoreIntro from './StoreIntro';
+
+
+<StoreIntro>
+<div q:slot={'code1'}>
+  ```javascript
+  const store = new Store({ id:10 });
+  ````
+</div>
+
+  <div q:slot={'code2'}>
+    ```javascript
+    const currentState$ =  store.getState;
+    ````
+  </div>
+
+  <div q:slot={'code3'}>
+    ```javascript
+    store.dispatch({
+      type: 'callapi',
+      payload: Math.round(Math.random() * 20),
+  });
+    ```
+  </div>
+
+  <div q:slot={'code4'}>
+    ```javascript
+    // the following code needs to run outside of an react component
+    actions$
+    .pipe(
+    // filter out the target async action
+    filter((action) => {
+      return action.type === 'callapi';
+  }),
+    // do the async task
+    concatMap((action) => {
+      if (!action) return of('');
+      const _url =
+      'https://jsonplaceholder.typicode.com/todos/' + action.payload;
+      return ajax.getJSON(_url);
+  }),
+    withLatestFrom(state$),
+    tap(([response, initialState]: [response: any, initialState: any]) => {
+      const newState = { ...initialState, id: response.id };
+      // when it is ready to update the state, dispatch the action with a todo function
+      store.dispatch({
+      type: 'update',
+      payload: newState,
+      todo: (initialState, payload) => {
+      return payload;
+  },
+  });
+  })
+    )
+    // do not forget to subscribe it otherwise it will not run
+    .subscribe((v) => {
+    console.log('complete', v);
+  });
+    ```
+
+  </div>
+</StoreIntro>

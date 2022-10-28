@@ -1,0 +1,17 @@
+.menu {
+  background: #eee;
+  padding: 20px 10px;
+}
+
+.menu h5 {
+  margin: 0;
+}
+
+.menu ul {
+  padding-left: 20px;
+  margin: 5px 0 25px 0;
+}
+
+.is-active {
+  font-weight: bold;
+}
