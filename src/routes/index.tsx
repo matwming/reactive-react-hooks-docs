@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import { useLocation } from "@builder.io/qwik-city";
-
+// @ts-nocheck
 export default component$(() => {
   const { pathname } = useLocation();
 
@@ -32,10 +32,7 @@ export default component$(() => {
       <p>
         Let's check the{" "}
         <strong>
-          {" "}
-          <a href="/docs" className={{ active: pathname.startsWith("/docs") }}>
-            Docs
-          </a>
+          <a href="/docs">Docs</a>
         </strong>{" "}
         now!
       </p>
