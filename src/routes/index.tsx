@@ -1,10 +1,9 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { useLocation } from "@builder.io/qwik-city";
+import { useDocumentHead, useLocation } from "@builder.io/qwik-city";
 // @ts-nocheck
 export default component$(() => {
   const { pathname } = useLocation();
-
   return (
     <>
       <h1>Welcome to reactive-react-hooks package</h1>
